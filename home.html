@@ -1,0 +1,71 @@
+<body>
+  <h1>Home</h1>
+  <h2>Books Available</h2>
+  <title>Books</title>
+  <div id="books-container" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px;">
+  <!-- Book items will be dynamically added here -->
+  </div>
+  <script>
+    async function loadBooks() {
+      try {
+        const response = await fetch("http://localhost:3000/books");
+        const books = await response.json();
+
+        const container = document.getElementById("books-container");
+        books.forEach(book => {
+          const bookDiv = document.createElement("div");
+          bookDiv.style.border = "1px solid #ccc";
+          bookDiv.style.borderRadius = "8px";
+          bookDiv.style.padding = "10px";
+          bookDiv.style.textAlign = "center";
+          bookDiv.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+
+          const bookImage = document.createElement("img");
+          bookImage.src = book.image_link || "placeholder.jpg";
+          bookImage.alt = book.title;
+          bookImage.style.width = "100%";
+          bookImage.style.height = "200px";
+          bookImage.style.objectFit = "contain";
+
+          const bookTitle = document.createElement("h3");
+          bookTitle.textContent = book.title;
+
+          const bookAuthor = document.createElement("p");
+          bookAuthor.textContent = `by ${book.author_name}`;
+
+          const addButton = document.createElement("button");
+          addButton.textContent = book.availability ? "Add" : "Return";
+          addButton.style.marginTop = "10px";
+          addButton.onclick = async () => {
+            await fetch("http://localhost:3000/books/toggle", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ bookId: book.id, availability: !book.availability })
+            });
+            book.availability = !book.availability;
+            addButton.textContent = book.availability ? "Add" : "Return";
+          };
+
+          const reviewsLink = document.createElement("a");
+          reviewsLink.textContent = "Reviews";
+          reviewsLink.href = `reviews.html?bookId=${book.id}`;
+          reviewsLink.style.display = "block";
+          reviewsLink.style.marginTop = "10px";
+          reviewsLink.style.color = "#007bff";
+          reviewsLink.style.textDecoration = "none";
+
+          bookDiv.appendChild(bookImage);
+          bookDiv.appendChild(bookTitle);
+          bookDiv.appendChild(bookAuthor);
+          bookDiv.appendChild(addButton);
+          bookDiv.appendChild(reviewsLink);
+          container.appendChild(bookDiv);
+        });
+      } catch (error) {
+        console.error("Error loading books:", error);
+      }
+    }
+
+    loadBooks();
+  </script>
+</body>
