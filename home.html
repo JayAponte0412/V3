@@ -1,9 +1,16 @@
-<body>
-  <h1>Home</h1>
-  <h2>Books Available</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Books</title>
-  <div id="books-container" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px;">
-  <!-- Book items will be dynamically added here -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+  <h1 class="home-hdr1">Home</h1>
+  <h2 class="home-hdr2">Books Available</h2>
+  <div id="books-container">
+    <!-- Book items will be dynamically added here -->
   </div>
   <script>
     async function loadBooks() {
@@ -14,18 +21,10 @@
         const container = document.getElementById("books-container");
         books.forEach(book => {
           const bookDiv = document.createElement("div");
-          bookDiv.style.border = "1px solid #ccc";
-          bookDiv.style.borderRadius = "8px";
-          bookDiv.style.padding = "10px";
-          bookDiv.style.textAlign = "center";
-          bookDiv.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
 
           const bookImage = document.createElement("img");
           bookImage.src = book.image_link || "placeholder.jpg";
           bookImage.alt = book.title;
-          bookImage.style.width = "100%";
-          bookImage.style.height = "200px";
-          bookImage.style.objectFit = "contain";
 
           const bookTitle = document.createElement("h3");
           bookTitle.textContent = book.title;
@@ -35,7 +34,6 @@
 
           const addButton = document.createElement("button");
           addButton.textContent = book.availability ? "Add" : "Return";
-          addButton.style.marginTop = "10px";
           addButton.onclick = async () => {
             await fetch("http://localhost:3000/books/toggle", {
               method: "POST",
@@ -49,10 +47,6 @@
           const reviewsLink = document.createElement("a");
           reviewsLink.textContent = "Reviews";
           reviewsLink.href = `reviews.html?bookId=${book.id}`;
-          reviewsLink.style.display = "block";
-          reviewsLink.style.marginTop = "10px";
-          reviewsLink.style.color = "#007bff";
-          reviewsLink.style.textDecoration = "none";
 
           bookDiv.appendChild(bookImage);
           bookDiv.appendChild(bookTitle);
@@ -69,3 +63,4 @@
     loadBooks();
   </script>
 </body>
+</html>

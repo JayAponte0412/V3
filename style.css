@@ -1,0 +1,105 @@
+.index-page {
+  background-image: url('images/Images/janko-ferlic-sfL_QOnmy00-unsplash.jpg');
+  background-size: cover;
+  height: 100vh;
+  margin: 0; 
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 50px;
+}
+.index-page h1{
+  font-family: fantasy;
+  font-size: 120px;
+  padding-top: 5%;
+  font-weight: bolder;
+  color: blue;
+  text-shadow:#fff;
+}
+
+.index-page button {
+  font-size: 1.2rem;
+  padding: 15px 25px;
+  width: 200px;
+  height: 50px;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 20px 40px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+#readers-container {
+  margin-top: 20px;
+}
+
+
+#books-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+#books-container div {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#books-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+#reviews-container div {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
+#add-review input,
+#add-review textarea,
+#add-review select {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+}
+
+#add-review button {
+  padding: 20px 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#add-review button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  display: block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}

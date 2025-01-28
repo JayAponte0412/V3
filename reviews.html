@@ -1,21 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Reviews</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <h1>Book Reviews</h1>
-  <div id="reviews-container" style="padding: 20px;">
-    <!-- Reviews will be dynamically added here -->
-  </div>
-  <div id="add-review" style="margin-top: 20px;">
-    <h3>Add a Review</h3>
-    <input type="text" id="reviewer" placeholder="Your Name" style="margin-bottom: 10px; width: 100%; padding: 8px;" />
-    <textarea id="comment" placeholder="Your Comment" style="margin-bottom: 10px; width: 100%; padding: 8px;"></textarea>
+  <h1 class="review-header">Book Reviews</h1>
+  <div id="reviews-container"></div>
+  <div id="add-review">
+    <h3 class="review-page">Add a Review</h3>
+    <input type="text" id="reviewer" placeholder="Your Name" />
+    <textarea id="comment" placeholder="Your Comment"></textarea>
     <label for="rating">Rating:</label>
-    <select id="rating" style="margin-bottom: 10px; width: 100%; padding: 8px;">
+    <select id="rating">
       <option value="1">1 Star</option>
       <option value="2">2 Stars</option>
       <option value="3">3 Stars</option>
       <option value="4">4 Stars</option>
       <option value="5">5 Stars</option>
     </select>
-    <button onclick="addReview()" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    <button onclick="addReview()">Submit</button>
   </div>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -30,10 +36,6 @@
         container.innerHTML = "";
         reviews.forEach(review => {
           const reviewDiv = document.createElement("div");
-          reviewDiv.style.border = "1px solid #ccc";
-          reviewDiv.style.borderRadius = "8px";
-          reviewDiv.style.padding = "10px";
-          reviewDiv.style.marginBottom = "10px";
 
           const reviewerName = document.createElement("h4");
           reviewerName.textContent = review.reviewer;
@@ -85,3 +87,4 @@
     loadReviews();
   </script>
 </body>
+</html>
