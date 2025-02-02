@@ -5,14 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Books</title>
   <link rel="stylesheet" href="style.css">
+  <script src="server.js" defer></script>
 </head>
 <body class="home-page">
   <h1 class="home-hdr1">Home</h1>
   <h2 class="home-hdr2">Books Available</h2>
-  <div id="books-container">
-    <!-- Book items will be dynamically added here -->
-  </div>
+  
+<div class="wrapper">
+  <input id="searchBox" placeholder="Enter book name..." title ="Type book name">
+  <input type="Submit" id="mybtn" value="Submit" onclick="searchFunction()">
+
+
+
+  <div id="books-container"></div>
   <script>
+    async function searchFunction() {
+    const searchQuery = document.getElementById("searchBox").value.toLowerCase();
+    const books = document.querySelectorAll("#books-container div");
+    let found = false;
+
+    books.forEach(book => {
+      const title = book.querySelector("h3").textContent.toLowerCase();
+      if (title.includes(searchQuery)) {
+        book.style.display = "block";
+        found = true;
+      } else {
+        book.style.display = "none";
+      }
+    });
+
+    let noBookMessage = document.getElementById("no-book-message");
+
+    if (!found) {
+      if (!noBookMessage) {
+        noBookMessage = document.createElement("p");
+        noBookMessage.id = "no-book-message";
+        noBookMessage.textContent = "NO BOOK FOUND";
+        noBookMessage.style.color = "red";
+        noBookMessage.style.fontWeight = "bold";
+        noBookMessage.style.textAlign = "center";
+        document.getElementById("books-container").appendChild(noBookMessage);
+      }
+    } else if (noBookMessage) {
+      noBookMessage.remove(); // Remove message if a book is found
+    }
+  }
+  
+
     async function loadBooks() {
       try {
         const response = await fetch("http://localhost:3000/books");

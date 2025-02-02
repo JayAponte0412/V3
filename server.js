@@ -1,4 +1,4 @@
-//adding Express.js and middleware here
+
 import express from "express";
 import { createConnection } from "mysql2";
 import cors from "cors";
@@ -11,7 +11,7 @@ const PORT = 3000;
 app.use(cors({ origin: ["http://localhost:3000", "http://127.0.0.1:5501"] }));
 app.use(express.json());
 
-// Connect to MySQL database
+
 const db = createConnection({
   host: 'localhost',
   user: 'root',
@@ -42,7 +42,8 @@ app.get("/books", (req, res) => {
   });
 });
 
-// books available/or not
+
+// books available/or not/add and return 
 app.post("/books/toggle", (req, res) => {
   const { bookId, availability } = req.body;
   const query = "UPDATE books SET availability = ? WHERE book_id = ?";
@@ -61,7 +62,6 @@ app.post("/reviews", (req, res) => {
   });
 });
 
-//  reviews for a book
 app.get("/reviews/:bookId", (req, res) => {
   const { bookId } = req.params;
   const query = "SELECT reviewer, rating, comment FROM reviews WHERE book_id = ?";
@@ -70,6 +70,9 @@ app.get("/reviews/:bookId", (req, res) => {
     res.json(results);
   });
 });
+
+// make the function for the submit button
+
 
 
 
