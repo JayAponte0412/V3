@@ -9,7 +9,7 @@
 <body class="index-page">
   <h1 class="index-header">Select a Reader</h1>
   <div id="readers-container"></div>
-
+  <button onclick="showUserError()">USER</button>
   <script>
     async function loadReaders() {
       try {
@@ -30,6 +30,9 @@
         console.error("Error loading readers:", error);
       }
     }
+    function showUserError() {
+  alert("Incorrect user");
+}
 
     loadReaders();
   </script>

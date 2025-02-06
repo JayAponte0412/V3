@@ -71,6 +71,11 @@ app.get("/reviews/:bookId", (req, res) => {
   });
 });
 
+// Broken API endpoint
+app.get("/broken-endpoint", (req, res) => {
+  res.status(500).json({ error: "This is a broken endpoint" });
+});
+
 // Start the server (use node server.js in terminal)
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
