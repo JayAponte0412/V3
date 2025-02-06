@@ -15,8 +15,6 @@
   <input id="searchBox" placeholder="Enter book name..." title ="Type book name">
   <input type="Submit" id="mybtn" value="Submit" onclick="searchFunction()">
 
-
-
   <div id="books-container"></div>
   <script>
     async function searchFunction() {
@@ -41,13 +39,10 @@
         noBookMessage = document.createElement("p");
         noBookMessage.id = "no-book-message";
         noBookMessage.textContent = "NO BOOK FOUND";
-        noBookMessage.style.color = "red";
-        noBookMessage.style.fontWeight = "bold";
-        noBookMessage.style.textAlign = "center";
         document.getElementById("books-container").appendChild(noBookMessage);
       }
     } else if (noBookMessage) {
-      noBookMessage.remove(); // Remove message if a book is found
+      noBookMessage.remove(); 
     }
   }
   

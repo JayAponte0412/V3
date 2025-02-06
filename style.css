@@ -108,3 +108,10 @@ a {
   color: #007bff;
   text-decoration: none;
 }
+
+#no-book-message{
+color: red;
+font-weight: bolder;
+margin-left: 180%;
+font-size: 100px;
+};

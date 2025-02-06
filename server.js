@@ -71,11 +71,6 @@ app.get("/reviews/:bookId", (req, res) => {
   });
 });
 
-// make the function for the submit button
-
-
-
-
 // Start the server (use node server.js in terminal)
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
